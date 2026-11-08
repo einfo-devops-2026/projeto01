@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: Atualizar aplicação
-        run: | 
+        run: |  
           cd /home/gustavo/lab-einfo/projeto01
           docker compose pull
           docker compose up -d
