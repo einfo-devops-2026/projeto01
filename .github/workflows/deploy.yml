@@ -36,13 +36,15 @@ jobs:
 
  
   deploy:
-    name: Deploy na VPS
-    needs: build
-    runs-on: self-hosted
+  name: Deploy na VPS
+  needs: build
+  runs-on:
+    group: Default
+    labels: self-hosted
 
-    steps:
-      - name: Atualizar aplicação
-        run: |  
-          cd /home/gustavo/lab-einfo/projeto01
-          docker compose pull
-          docker compose up -d
+  steps:
+    - name: Atualizar aplicação
+      run: |
+        cd /home/gustavo/lab-einfo/projeto01
+        docker compose pull
+        docker compose up -d
