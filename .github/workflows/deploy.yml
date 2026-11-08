@@ -1,32 +1,33 @@
-name: Node CI/CD
+
+name: Docker build
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Node
-        uses: actions/setup-node@v4
+      - name: Login GHCR
+        uses: docker/login-action@v3
         with:
-          node-version: 22
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Instalar dependências
-        run: npm ci
-
-      - name: Executar testes
-        run: npm test
-
-      - name: Build
-        run: npm run build --if-present
-
-      - name: Construir imagem Docker
-        run: docker build -t minha-api .
+      - name: Build and Push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/gustavodevsenai/projeto01:latest
