@@ -30,4 +30,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/gustavodevsenai/projeto01:latest
+          tags: ghcr.io/einfo-devops-2026/projeto01:latest
