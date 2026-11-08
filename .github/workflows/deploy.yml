@@ -34,11 +34,11 @@ jobs:
           tags: |
             ghcr.io/einfo-devops-2026/projeto01:latest
 
-
+ 
   deploy:
     name: Deploy na VPS
     needs: build
-    runs-on: [self-hosted, terabits]
+    runs-on: self-hosted
 
     steps:
       - name: Atualizar aplicação
