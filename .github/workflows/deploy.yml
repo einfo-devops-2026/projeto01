@@ -38,7 +38,7 @@ jobs:
   deploy:
     name: Deploy na VPS
     needs: build
-    runs-on: [self-hosted, terabits]
+    runs-on: self-hosted
 
     steps:
       - name: Atualizar aplicação
